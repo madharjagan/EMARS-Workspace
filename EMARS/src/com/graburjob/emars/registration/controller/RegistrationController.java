@@ -2,6 +2,7 @@ package com.graburjob.emars.registration.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,6 +45,8 @@ public class RegistrationController extends HttpServlet {
 		user.setEmail(request.getParameter("inputEmail"));
 		user.setPassword(request.getParameter("inputPassword"));
 		regService.createUser(user);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Profile.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 }
