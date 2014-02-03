@@ -41,11 +41,13 @@ public class RegistrationController extends HttpServlet {
 		System.out.println("inside doPost");
 		RegistrationService regService = new RegistrationService();
 		User user = new User();
+		String email=request.getParameter("inputEmail");
 		System.out.println(request.getParameter("inputEmail"));
-		user.setEmail(request.getParameter("inputEmail"));
-		user.setPassword(request.getParameter("inputPassword"));
+		user.setEmail(email);
+		String pwd=request.getParameter("inputPassword");
+		user.setPassword(pwd);
 		regService.createUser(user);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Profile.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_profile.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

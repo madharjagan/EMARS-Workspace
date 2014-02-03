@@ -1,6 +1,7 @@
 package com.graburjob.emars.registration.service;
 
 import com.graburjob.emars.registration.dao.RegistrationDAO;
+import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
 
 public class RegistrationService implements IRegistrationService{
@@ -15,6 +16,13 @@ public class RegistrationService implements IRegistrationService{
 	public User getUser(String userId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int createPatientProfile(PatientProfile patientprofile) {
+		RegistrationDAO rDAO = new RegistrationDAO();
+		return rDAO.createPatientProfile(patientprofile);
+		
 	}
 
 }
