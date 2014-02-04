@@ -26,7 +26,7 @@
     <div class="col-lg-4">
         <a href="index.html"><img src="images/emars_logo.png"></a>
       <div class="header">
-        <h2>Apollos</h2>
+        <h2>EMARs</h2>
       </div>
     </div>
 
