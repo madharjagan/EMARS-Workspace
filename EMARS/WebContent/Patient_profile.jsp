@@ -50,7 +50,7 @@
       </div>
        <div class="col-lg-6">
       <div class="header">
-        <h2>Patient Registration</h2><br /><br />
+        <h2>Patient Profile</h2><br /><br />
       </div>
         <form role="form" method="post" action="PatientProfileController">
           <div class="form-group">

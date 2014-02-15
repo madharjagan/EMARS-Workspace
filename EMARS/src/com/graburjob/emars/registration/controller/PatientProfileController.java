@@ -50,9 +50,13 @@ public class PatientProfileController extends HttpServlet {
 		patientprofile.setAddress(request.getParameter("address"));
 		patientprofile.setEmail(request.getParameter("email"));
 		patientprofile.setContact(request.getParameter("contact"));
-		regService.createPatientProfile(patientprofile);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Home.jsp");
-		requestDispatcher.forward(request, response);
+		int result = regService.createPatientProfile(patientprofile);
+		if(result == 1){
+			request.setAttribute("currentPatientProfile", patientprofile);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Home.jsp");
+			requestDispatcher.forward(request, response);			
+		}
+
 	}
 
 }

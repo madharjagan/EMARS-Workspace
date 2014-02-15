@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+  <%@ page import="com.graburjob.emars.registration.model.PatientProfile" %>
+ 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +21,9 @@
     <![endif]-->
   </head>
   <body>
+  <%
+PatientProfile currentPatientProfile = (PatientProfile) request.getAttribute("currentPatientProfile");
+%>
 <div class="container">
 
     <!--<div class="header page-header">
@@ -60,15 +67,15 @@
 
             <div class="controls">
 
-              <h3>John Christopher</h3>
-              <h3>Male</h3>
-              <h3>12/25/1980</h3>
-              <h3>Cross Street,Triplicane, Chennai-600005</h3>
-              <h3>johnchris@gmail.com</h3>
-              <h3>9876543210</h3><br /><br />
+              <h3><%=currentPatientProfile.getName() %></h3>
+              <h3><%=currentPatientProfile.getGender() %></h3>
+              <h3><%=currentPatientProfile.getDob() %></h3>
+              <h3><%=currentPatientProfile.getAddress() %></h3>
+              <h3><%=currentPatientProfile.getEmail() %></h3>
+              <h3><%=currentPatientProfile.getContact() %></h3><br /><br />
 
-              <button type="submit" class="btn btn-primary btn-lg">Edit</button>&nbsp;&nbsp;
-              <button type="submit" class="btn btn-primary btn-lg">OK</button>
+              <button type="edit" class="btn btn-primary btn-lg">Edit</button>&nbsp;&nbsp;
+              <a href="Doctor_Appointment.jsp"class="btn btn-primary btn-lg active pull-right"role="button">Get Appointment</a>
 
             </div>
           </div>
