@@ -1,7 +1,10 @@
 package com.graburjob.emars.registration.service;
 
+import java.util.List;
+
 import com.graburjob.emars.registration.model.Appointment;
-import com.graburjob.emars.registration.model.DoctorVisit;
+import com.graburjob.emars.registration.model.Doctor;
+//import com.graburjob.emars.registration.model.DoctorVisit;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
 
@@ -10,9 +13,11 @@ public interface IRegistrationService {
 	public int createUser(User user);
 	public User getUser(String userId);
 	public int createPatientProfile(PatientProfile patientProfile);
-	public int createDoctorVisit(DoctorVisit visit);
 	public PatientProfile getPatientProfile(String email);
-	public boolean isValidUser(String email,String password);
+	public String isValidUser(String email,String password);
 	public int getAppointment(Appointment appoint);
+	public int createDoctor(Doctor doctor);
+	public List<Doctor> getPatientMedication(String email);
+	
 	
 }

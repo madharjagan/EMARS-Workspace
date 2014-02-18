@@ -43,14 +43,17 @@ public class LoginController extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		RegistrationService regService = new RegistrationService();
-		boolean isValidUser = regService.isValidUser(email,password);
-		if(isValidUser)
+		String role = regService.isValidUser(email,password);
+		if(role.equalsIgnoreCase("P"))
 		{
 			PatientProfile patientProfile= regService.getPatientProfile(email);
 			request.setAttribute("currentPatientProfile", patientProfile);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Home.jsp");
 			requestDispatcher.forward(request, response);
 			
+		} else if(role.equalsIgnoreCase("D")) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Search.jsp");
+			requestDispatcher.forward(request, response);
 		}
 	}
 

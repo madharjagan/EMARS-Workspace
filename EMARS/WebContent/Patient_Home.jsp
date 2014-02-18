@@ -52,7 +52,7 @@ PatientProfile currentPatientProfile = (PatientProfile) request.getAttribute("cu
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="#"><h3>Home</h3></a></li>
           <li><a href="#"><h3>Profile</h3></a></li>
-          <li><a href="#"><h3>Messages</h3></a></li>
+          <li><a href="Home.html"><h3>LogOut</h3></a></li>
         </ul>
       </div>
 

@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.graburjob.emars.registration.model.Appointment;
-import com.graburjob.emars.registration.model.DoctorVisit;
+import com.graburjob.emars.registration.model.Doctor;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
 
@@ -16,7 +18,7 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 
 		Connection connection = getDBConnection();
 		int result = 0;
-		String query = "INSERT INTO PASSWORDS(email, password) VALUES('"+user.getEmail()+"','"+user.getPassword()+"')";
+		String query = "INSERT INTO PASSWORDS(email, password,role) VALUES('"+user.getEmail()+"','"+user.getPassword()+"','"+user.getRole()+"')";
 		System.out.println(query);
 		Statement stmt;
 		try {
@@ -33,22 +35,6 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 		Connection connection = getDBConnection();
 		int result = 0;
 		String query = "INSERT INTO PATIENT_PROFILE(name,gender,dob,address,email,contact) VALUES('"+patientprofile.getName()+"','"+patientprofile.getGender()+"','"+patientprofile.getDob()+"','"+patientprofile.getAddress()+"','"+patientprofile.getEmail()+"','"+patientprofile.getContact()+"')";
-		System.out.println(query);
-		Statement stmt;
-		try {
-			stmt = connection.createStatement();
-			result = stmt.executeUpdate(query);
-			System.out.println("Result ********" + result);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	public int createDoctorVisit(DoctorVisit visit) {
-
-		Connection connection = getDBConnection();
-		int result = 0;
-		String query = "INSERT INTO DOCTOR_VISIT(visitdate,symptoms,medication,report) VALUES('"+visit.getDate()+"','"+visit.getSymptoms()+"','"+visit.getMedication()+"','"+visit.getReport()+"')";
 		System.out.println(query);
 		Statement stmt;
 		try {
@@ -85,10 +71,36 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 		return patientProfile;		
 	}
 	
-	public boolean isValidUser(String email,String password) {
-		boolean isValidUser=false;
+	public List<Doctor> getPatientMedication(String email) {
+		List<Doctor> listOfMedications = new ArrayList<Doctor>(); 
+		Doctor doctor=null;
 		Connection connection = getDBConnection();
-		String query = "select password from passwords where email='" + email +"'";
+		String query = "select visitdate, symptoms, medication, report from DOCTOR_VISIT where email='" + email +"'";
+		Statement stmt;
+		try {
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next()) {
+				doctor = new Doctor();
+				doctor.setEmail(email);
+				doctor.setDate(rs.getString("visitdate"));
+				doctor.setSymptoms(rs.getString("symptoms"));
+				doctor.setMedication(rs.getString("medication"));
+				doctor.setReport(rs.getString("report"));	
+				listOfMedications.add(doctor);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listOfMedications;		
+	}
+	
+	public String isValidUser(String email,String password) {
+		String role ="";
+		Connection connection = getDBConnection();
+		String query = "select password,role from passwords where email='" + email +"'";
 		Statement stmt;
 		try {
 			stmt = connection.createStatement();
@@ -96,18 +108,19 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 			if (rs.next()) {
 				
 				if(password.equals(rs.getString("password")))
-						{
-					isValidUser=true;
-						}
+				{
+					role=rs.getString("role");
+				}
 				
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return isValidUser;
+		return role;
 		
 	}
+	
 	public int getAppointment(Appointment appoint) {
 
 		Connection connection = getDBConnection();
@@ -124,4 +137,28 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 		}
 		return result;
 	}
+	
+	public int createDoctor(Doctor doctor) {
+
+		Connection connection = getDBConnection();
+		int result=0;
+		String query = "INSERT INTO DOCTOR_VISIT(visitdate,symptoms,medication,report,email) VALUES('"+doctor.getDate()+"','"+doctor.getSymptoms()+"','"+doctor.getMedication()+"','"+doctor.getReport()+"','"+doctor.getEmail()+"')";
+		
+		System.out.println(query);
+		
+		Statement stmt;
+		try {
+			stmt = connection.createStatement();
+			result = stmt.executeUpdate(query);
+			
+			System.out.println("Result ********" + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+
+	
 }
