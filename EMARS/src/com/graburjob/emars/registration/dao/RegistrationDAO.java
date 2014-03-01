@@ -11,6 +11,7 @@ import com.graburjob.emars.registration.model.Appointment;
 import com.graburjob.emars.registration.model.Doctor;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
+import com.mysql.jdbc.PreparedStatement;
 
 public class RegistrationDAO extends BaseDataBaseAccess {
 	
@@ -34,12 +35,20 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 
 		Connection connection = getDBConnection();
 		int result = 0;
-		String query = "INSERT INTO PATIENT_PROFILE(name,gender,dob,address,email,contact) VALUES('"+patientprofile.getName()+"','"+patientprofile.getGender()+"','"+patientprofile.getDob()+"','"+patientprofile.getAddress()+"','"+patientprofile.getEmail()+"','"+patientprofile.getContact()+"')";
-		System.out.println(query);
-		Statement stmt;
+		String query = "INSERT INTO PATIENT_PROFILE(name,gender,dob,address,email,contact,photo) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
-			stmt = connection.createStatement();
-			result = stmt.executeUpdate(query);
+			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(query);
+			stmt.setString(1, patientprofile.getName());
+			stmt.setString(2, patientprofile.getGender());
+			stmt.setString(3, patientprofile.getDob());
+			stmt.setString(4, patientprofile.getAddress());
+			stmt.setString(5, patientprofile.getEmail());
+			stmt.setString(6, patientprofile.getContact());
+			if (patientprofile.getPhoto() != null) {
+				// fetches input stream of the upload file for the blob column
+				stmt.setBlob(7, patientprofile.getPhoto());
+			}
+			result = stmt.executeUpdate();
 			System.out.println("Result ********" + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,7 +68,7 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 				patientProfile = new PatientProfile();
 				patientProfile.setName(rs.getString("name"));
 				patientProfile.setGender(rs.getString("gender"));
-				patientProfile.setDOB(rs.getString("dob"));
+				patientProfile.setDob(rs.getString("dob"));
 				patientProfile.setEmail(rs.getString("email"));
 				patientProfile.setContact(rs.getString("contact"));
 				patientProfile.setAddress(rs.getString("address"));

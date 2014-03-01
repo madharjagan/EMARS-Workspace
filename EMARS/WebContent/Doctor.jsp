@@ -75,9 +75,9 @@ List<Doctor> listOfMedication = (ArrayList<Doctor>) request.getAttribute("doctor
               <h3><%=patientProfile.getGender() %></h3>
               <h3><%=patientProfile.getDob() %></h3>
              <br />
-             <table border="1">
+             <table class="table table-bordered">
              <%for(Doctor doctor:listOfMedication){ %>
-              <tr><td><%=doctor.getEmail() %></td>
+              <tr>
               <td><%=doctor.getDate() %></td>
               <td><%=doctor.getSymptoms() %></td>
                <td><%=doctor.getMedication() %></td>
@@ -90,7 +90,7 @@ List<Doctor> listOfMedication = (ArrayList<Doctor>) request.getAttribute("doctor
             <div class="form-group">
             <input type="text" name="email" class="form-control"value=<%=patientProfile.getEmail() %>><br />
                 <label for="inputDOB">Visiting Date</label>
-                <input type="date" accept="date" class="form-control" id="date" name="date" placeholder="Enter date">
+                <input type="date" accept="date" class="form-control" id="date" name="date" placeholder="Enter date" required="required">
             </div>
             <div class="form-group">
               <label for="labelAddress">Symptoms</label>

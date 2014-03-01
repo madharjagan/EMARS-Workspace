@@ -1,5 +1,7 @@
 package com.graburjob.emars.registration.model;
 
+import java.io.InputStream;
+
 public class PatientProfile {
 	private String name;
 	private String gender;
@@ -7,6 +9,7 @@ public class PatientProfile {
 	private String address;
 	private String email;
 	private String contact;
+	private InputStream photo;
 	
 	public String getName() {
 		return name;
@@ -14,17 +17,25 @@ public class PatientProfile {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getGender() {
 		return gender;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	public String getDob() {
 		return dob;
 	}
-	public void setDOB(String dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
+	}
+	public InputStream getPhoto() {
+		return photo;
+	}
+	public void setPhoto(InputStream photo) {
+		this.photo = photo;
 	}
 	public String getAddress() {
 		return address;
