@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,7 +54,7 @@
       <div class="header">
         <h2>Patient Profile</h2><br /><br />
       </div>
-        <form role="form" method="post" action="PatientProfileController">
+        <form method="post" action="PatientProfileController" enctype="multipart/form-data">
           <div class="form-group">
             <label for="labelName">Name</label>
             <input type="text" pattern="[A-Za-z\.\s]+" class="form-control" id="name" name="name" placeholder="Enter Your Name">
@@ -82,8 +84,10 @@
             <label for="labelNumber">Mobile Number</label>
             <input type="text" pattern="[0-9]{10}" class="form-control" id="contact" name="contact" >
           </div>
-
-
+          <div class="form-group">
+            <label for="labelNumber">Upload Image</label>
+            <input type="file" name="photo" size="10" />
+          </div>
           <button type="submit" class="btn btn-primary btn-lg pull-right">Next</button>
         </form>
        </div>
