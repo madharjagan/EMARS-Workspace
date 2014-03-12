@@ -7,6 +7,7 @@ import com.graburjob.emars.registration.model.Doctor;
 //import com.graburjob.emars.registration.model.DoctorVisit;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
+import com.mysql.jdbc.Blob;
 
 public interface IRegistrationService {
 	
@@ -18,6 +19,7 @@ public interface IRegistrationService {
 	public int getAppointment(Appointment appoint);
 	public int createDoctor(Doctor doctor);
 	public List<Doctor> getPatientMedication(String email);
+	public Blob getImage(String email);
 	
 	
 }

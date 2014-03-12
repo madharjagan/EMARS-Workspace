@@ -7,6 +7,7 @@ import com.graburjob.emars.registration.model.Appointment;
 import com.graburjob.emars.registration.model.Doctor;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
+import com.mysql.jdbc.Blob;
 
 public class RegistrationService implements IRegistrationService{
 
@@ -33,6 +34,7 @@ public class RegistrationService implements IRegistrationService{
 	    RegistrationDAO rDAO = new RegistrationDAO();
 		return rDAO.getPatientProfile(email);
 	}
+	
 	@Override
 	public String isValidUser (String email,String password) {
 	    RegistrationDAO rDAO = new RegistrationDAO();
@@ -55,5 +57,11 @@ public class RegistrationService implements IRegistrationService{
 		RegistrationDAO rDAO = new RegistrationDAO();
 		return rDAO.getPatientMedication(email);
 	}
+	@Override
+	public Blob getImage(String email) {
+		RegistrationDAO rDAO = new RegistrationDAO();
+		return rDAO.getImage(email);
+	}
+	
 	
 }

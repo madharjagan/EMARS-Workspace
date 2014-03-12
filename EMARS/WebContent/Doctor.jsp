@@ -76,7 +76,12 @@ List<Doctor> listOfMedication = (ArrayList<Doctor>) request.getAttribute("doctor
               <h3><%=patientProfile.getDob() %></h3>
              <br />
              <table class="table table-bordered">
+             <th>Date</th>
+             <th>Symptoms</th>
+             <th>Medications</th>
+             <th>Reports</th>
              <%for(Doctor doctor:listOfMedication){ %>
+             
               <tr>
               <td><%=doctor.getDate() %></td>
               <td><%=doctor.getSymptoms() %></td>

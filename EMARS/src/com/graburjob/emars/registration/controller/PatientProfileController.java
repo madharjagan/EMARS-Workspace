@@ -58,6 +58,7 @@ public class PatientProfileController extends HttpServlet {
         } 
 		RegistrationService regService = new RegistrationService();
 		PatientProfile patientprofile=new PatientProfile();
+	
 		System.out.println(request.getParameter("name"));
 		patientprofile.setName(request.getParameter("name"));
 		patientprofile.setGender(request.getParameter("optionsRadios"));
@@ -68,7 +69,8 @@ public class PatientProfileController extends HttpServlet {
 		patientprofile.setPhoto(inputStream);
 		
 		int result = regService.createPatientProfile(patientprofile);
-		if(result == 1){
+		if(result == 1)
+		{
 			request.setAttribute("currentPatientProfile", patientprofile);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Patient_Home.jsp");
 			requestDispatcher.forward(request, response);			

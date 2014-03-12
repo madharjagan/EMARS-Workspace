@@ -11,6 +11,7 @@ import com.graburjob.emars.registration.model.Appointment;
 import com.graburjob.emars.registration.model.Doctor;
 import com.graburjob.emars.registration.model.PatientProfile;
 import com.graburjob.emars.registration.model.User;
+import com.mysql.jdbc.Blob;
 import com.mysql.jdbc.PreparedStatement;
 
 public class RegistrationDAO extends BaseDataBaseAccess {
@@ -58,19 +59,22 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 	public PatientProfile getPatientProfile(String email) {
 		PatientProfile patientProfile=null;
 		Connection connection = getDBConnection();
-		String query = "select name,gender,dob,email,contact,address from patient_profile where email='" + email +"'";
+		String query = "select name,gender,dob,email,contact,photo,address from patient_profile where email='" + email +"'";
 		Statement stmt;
 		try {
 			stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
+			
 			if (rs.next()) {
 				patientProfile = new PatientProfile();
+				
 				patientProfile.setName(rs.getString("name"));
 				patientProfile.setGender(rs.getString("gender"));
 				patientProfile.setDob(rs.getString("dob"));
 				patientProfile.setEmail(rs.getString("email"));
 				patientProfile.setContact(rs.getString("contact"));
+				
 				patientProfile.setAddress(rs.getString("address"));
 			}
 		} catch (SQLException e) {
@@ -80,7 +84,7 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 		return patientProfile;		
 	}
 	
-	public List<Doctor> getPatientMedication(String email) {
+		public List<Doctor> getPatientMedication(String email) {
 		List<Doctor> listOfMedications = new ArrayList<Doctor>(); 
 		Doctor doctor=null;
 		Connection connection = getDBConnection();
@@ -168,6 +172,25 @@ public class RegistrationDAO extends BaseDataBaseAccess {
 		return result;
 		
 	}
+	public Blob getImage(String email){
+		Connection connection = getDBConnection();
+		Blob image=null;
+		String query="SELECT PHOTO FROM patient_profile where email=?";
+		try{
+			PreparedStatement stmt=(PreparedStatement)connection.prepareStatement(query);
+			stmt.setString(1, email);
+			ResultSet rs=stmt.executeQuery();
+			if(rs.next()){
+				image=(Blob)rs.getBlob("PHOTO");
+			}
+		}
+		catch(SQLException e){
+		e.printStackTrace();
+		}
+		return image;
+	}
+		
+	}
 
 	
-}
+

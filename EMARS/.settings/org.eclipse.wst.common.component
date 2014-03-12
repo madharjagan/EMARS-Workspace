@@ -2,6 +2,7 @@
     <wb-module deploy-name="EMARS">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/DB_Scripts"/>
         <property name="context-root" value="EMARS"/>
         <property name="java-output-path" value="/EMARS/build/classes"/>
     </wb-module>

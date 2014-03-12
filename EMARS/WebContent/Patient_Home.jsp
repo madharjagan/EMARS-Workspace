@@ -82,7 +82,7 @@ PatientProfile currentPatientProfile = (PatientProfile) request.getAttribute("cu
         </form>
       </article>
        <aside class="col-lg-3">
-        <img src="images/round_img.jpg" alt="..." class="img-circle">
+        <img src="DisplayPhotoController?email=<%=currentPatientProfile.getEmail() %>" alt="..." class="img-circle">
        </aside>
     </div>
 

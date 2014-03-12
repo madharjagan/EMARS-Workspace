@@ -35,7 +35,7 @@ public class PatientProfile {
 		return photo;
 	}
 	public void setPhoto(InputStream photo) {
-		this.photo = photo;
+		this.photo =photo;
 	}
 	public String getAddress() {
 		return address;
