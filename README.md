@@ -63,3 +63,4 @@ Architecture Diagram
 High-Level Design
 
 
+![Alt text] (https://github.com/madharjagan/EMARS-Workspace/blob/master/High-Level.JPG)
