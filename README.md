@@ -37,4 +37,27 @@ Server to Host eMARs Web application
 
 
 Mobile to Host Android App
+  1)Any NFC enabled mobile (Nexus 4,5, Galaxy III, IV)
+  
+NFC Tag
+
+
+
+System requirements - Software
+
+Web Application
+
+  1) Windows OS
+  2) Java 7
+  3) Tomcat 7
+Android App
+  1) Android 4
+  2) PhoneGap
+  
+  
+Architecture Diagram
+
+http://2.bp.blogspot.com/-2AfAQwvG1JY/UuNfwnRP3AI/AAAAAAAAAV4/i0d1U-DkBVY/s1600/eMAR_System.png
+
+
 
