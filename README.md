@@ -17,6 +17,7 @@ Problem Statement
 
 4) Portability.
 
+
 Proposed Solution
 
 1) Proposed solution combines Android tablet with NFC tags attached to patients wristbands.
@@ -25,26 +26,15 @@ Proposed Solution
 
 3) TAP to view patients information. Fast retrieval of patient data.
 
+
 System requirements - Hardware
+
 
 Server to Host eMARs Web application
   1) Intel® processor
   2) 2GB Memory
   3) 100 GB HDD
 
+
 Mobile to Host Android App
-
-Any NFC enabled mobile (Nexus 4,5, Galaxy III, IV)
-
-NFC Tag
-
-System requirements - Software
-
-Web Application
-  Windows OS
-  Java 7
-  Tomcat 7
-Android App
-  Android 4
-  PhoneGap
 
