@@ -60,4 +60,6 @@ Architecture Diagram
 ![Alt text] (http://2.bp.blogspot.com/-2AfAQwvG1JY/UuNfwnRP3AI/AAAAAAAAAV4/i0d1U-DkBVY/s1600/eMAR_System.png)
 
 
+High-Level Design
+
 
